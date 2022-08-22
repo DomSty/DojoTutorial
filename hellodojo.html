@@ -1,0 +1,86 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CV DOJO</title>
+
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.7.12/dojo/dojo.js"></script>
+    <script>typeof(dojo) === "undefined" && document.write(unescape('%3Cscriptsrc="js/libs/dojo/dojo.js"%3E%3C/script%3E'))</script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    
+</head>
+<body>
+    
+    <div class="me" id="me">
+        <h1>Dominik Styrz</h1>     
+        <img src="../DojoTutorial/Bewerbungsfoto.jpg" id="bewerbungsfoto"></img>
+    </div>
+
+    <div class="mySkills">
+    <h2>Meine Kentnisse</h2>
+
+    <p>Kentnisse:</p>
+    <input type="text" id="skill">
+    <button type="button" id="addButton">Hinzufügen</button>
+    </div>
+    <div class="container">
+        <hr/>
+        <div id="skillList" class="container list-group"></div>
+    </div>
+
+    <script>
+        require(["dojo/ready",
+        "dojo/dom",
+        "dojo/dom-construct",
+        "dojo/_base/window",
+        "dojo/on",
+        "dojo/string",
+        "dojo/dom-class",
+        "dojo/mouse"],
+        function(ready,dom,construct,win,on,string,domClass,mouse){
+            ready(function(){
+                console.log("Dom is ready");
+                var skill = dom.byId("skill");
+                var addButton = dom.byId("addButton");
+                var skillList = dom.byId("skillList");
+
+                on(addButton, "click",function(){
+                    var skillName = skill.value.trim();
+                    
+
+                    if(skill != ""){
+                        console.log("You added a new skill: " + skillName)
+
+                        var skillRow = construct.create("div",{
+                            class: "container list-group-item"
+                            },
+                            skillList
+                        );
+
+                        var row = construct.create("div",{
+                            class: "row"
+                            },
+                            skillRow
+                        );
+
+                        var skillItem = construct.create("div",{
+                            innerHTML: skillName,
+                            class: "col-sn"
+                            },
+                            row
+                        );
+                    }
+                })
+
+            })
+
+        })
+    </script>
+    
+        
+</body>
+</html>
